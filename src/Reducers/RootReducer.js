@@ -1,7 +1,8 @@
 import {combineReducers} from 'redux';
+import MiscReducer from './MiscReducer';
 
 const rootReducer = combineReducers({
-    // For future use
+    misc: MiscReducer
 });
 
 export default rootReducer;

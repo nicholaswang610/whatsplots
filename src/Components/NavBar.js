@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 import "../Styles/Navbar.css";
 import {ReactComponent as HomeButton} from './icons/home-icon.svg';
 import {ReactComponent as PlotsButton} from './icons/plots-icon.svg';
@@ -8,9 +9,9 @@ const Navbar = (props) => {
     return (
         <div id="navbar-container">
             <div id="button-collection">
-                <HomeButton className="nav-button"></HomeButton>
-                <PlotsButton className="nav-button"></PlotsButton>
-                <ProfileButton className="nav-button"></ProfileButton>
+                <NavLink exact to="/"><HomeButton className="nav-button"></HomeButton></NavLink>
+                <NavLink exact to="/plans"><PlotsButton className="nav-button"></PlotsButton></NavLink>
+                <NavLink exact to="/profile"><ProfileButton className="nav-button"></ProfileButton></NavLink>
             </div>
         </div>
     );

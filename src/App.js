@@ -4,13 +4,12 @@ import Home from './Components/Home';
 
 const App = () => {
   return (
-  <div>
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={Home}></Route>
-      </Switch>
+        <Switch>
+          <Route exact path='/' component={Home}></Route>
+        </Switch>
     </BrowserRouter>
-  </div>);
+  );
 }
 
 export default App;

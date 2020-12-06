@@ -7,9 +7,6 @@ const defaultCoords = [34.0522, -118.2437] // Los Angeles
 
 const ActivityMap = (props) => {
     const [userCoords, setUserCoords] = useState(defaultCoords); 
-
-    // Private this later
-    //let endpoint = "https://api.mapbox.com/styles/v1/njwang/cki5f6sml7s1i19p5xpd1l9w2/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoibmp3YW5nIiwiYSI6ImNraTVmYnY1eTA0dmcydXBxMTdnbnEwMTYifQ.Ue5q9QnQewN0cltRlOxBpQ";
     
     // On load: center map at user location
     useEffect(() => {

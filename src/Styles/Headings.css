@@ -1,9 +1,34 @@
-.home-container{
-    display:flex;
-    justify-content:center;
-}
-@media only screen and (min-width: 375px) {
+@media only screen and (max-height: 568px) {
+    #home-container {
+        position:absolute;
+        min-height: 770px;
+        width:100vw;
+    }
+
     .home-heading {
+        position:relative;
+        display:flex;
+        color: white;
+        font-weight:bold;
+        font-size: 24px;
+        font-style: normal;
+        margin: 5% 5% 3% 5%;
+        justify-content: space-between;
+    }
+
+    .heading-text {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 320px) {
+    #home-container {
+        position:absolute;
+        height: 100vh;
+        width:100vw;
+    }
+    .home-heading {
+        position:relative;
         display:flex;
         color: white;
         font-weight:bold;
