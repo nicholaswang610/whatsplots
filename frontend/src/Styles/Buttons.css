@@ -6,6 +6,17 @@
         width:90%;
         left: 5%;
         margin-top: 5%;
+        cursor: pointer;
+    }
+
+    .create-button {
+        cursor: pointer;
+    }
+
+    .create-button:active {
+        opacity: 0.2;
+        transition: opacity 300ms;
+        
     }
 
 }

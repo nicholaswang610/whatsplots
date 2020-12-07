@@ -5,7 +5,6 @@ const MapView = (props) => {
     const map = useMap();
     map.setView(props.center, props.zoom);
     map.fitBounds(props.bounds);
-    console.log(props.bounds);
     return null;
 }
 

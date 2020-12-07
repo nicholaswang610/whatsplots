@@ -11,8 +11,12 @@ import {ReactComponent as MaybeButton} from './icons/Maybe.svg';
 import Navbar from './NavBar';
 import AddForm from './AddForm';
 import {CSSTransition} from 'react-transition-group';
+import axios from 'axios';
 
 class Home extends Component {
+    componentDidMount() {
+        axios.get('/api').then(response=>{console.log(response.data)});
+    }
     render() {
         return (
             <div id="home-container">
@@ -21,7 +25,7 @@ class Home extends Component {
                 </CSSTransition>
                 <div className="home-heading"> 
                     <div className="heading-text">Confirm Plans</div>
-                    <CreateButton onClick={this.props.openForm}/>
+                    <CreateButton className="create-button" onClick={this.props.openForm}/>
                 </div>
                 <ActivityMap/>
                 <div className="buttons">
