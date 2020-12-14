@@ -11,12 +11,8 @@ import {ReactComponent as MaybeButton} from './icons/Maybe.svg';
 import Navbar from './NavBar';
 import AddForm from './AddForm';
 import {CSSTransition} from 'react-transition-group';
-import axios from 'axios';
 
 class Home extends Component {
-    componentDidMount() {
-        axios.get('/api').then(response=>{console.log(response.data)});
-    }
     render() {
         return (
             <div id="home-container">
@@ -29,10 +25,10 @@ class Home extends Component {
                 </div>
                 <ActivityMap/>
                 <div className="buttons">
-                    <RewindButton/>
-                    <NoButton/>
-                    <YesButton/>
-                    <MaybeButton/>
+                    <RewindButton className="rewind"/>
+                    <NoButton className="no"/>
+                    <YesButton className="yes"/>
+                    <MaybeButton className="maybe"/>
                 </div>
                 <Navbar/>
             </div>

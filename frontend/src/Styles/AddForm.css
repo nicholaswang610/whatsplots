@@ -1,7 +1,8 @@
 @media only screen and (min-width: 320px) {
-    .add-form {
+    .add-form, .add-form:active, .add-form:focus {
         display: flex;
         flex-direction: column;
+        align-items: center;
         position: fixed;
         height: 100%;
         width: 100%;
@@ -32,9 +33,11 @@
     }
 
     .close-form {
+        position: absolute;
         margin: 15px;
         text-decoration: underline;
         cursor: pointer;
+        left: 0%;
     }
 
     .close-form:active {
@@ -42,23 +45,32 @@
         transition: opacity 300ms;
     }
 
-    .form-container {
+    .activity-location, .activity-title, .activity-description {
         position: relative;
         display: flex;
         justify-content: center;
         height: 40px;
         width: 100%;
+        margin-top: 50px;
     }
-    .address {
+
+    .activity-title, .activity-description {
+        margin-top: 15px;
+    }
+
+    .activity-description {
+        height: 80px;
+    }
+
+    .location, .title, .description {
         display: flex;
         justify-content: center;
         height: 100%;
         width: 95%;
-        background: rgba(0,0,0,0.25);
         border-radius: 13px;
     }
 
-    #address {
+    #location, #title, #description {
         font-family: sans-serif !important;
         font-weight: 500 !important;
         font-size: 14px;
@@ -72,6 +84,11 @@
         border-radius: 13px;
         background: rgba(0,0,0,0.25);
     }
+
+    #description {
+        padding: 10px;
+        resize: none;
+    }
     
     .search-icon {
         position: absolute;
@@ -79,5 +96,36 @@
         height: 20px;
         right: 5%;
         top: 25%;
+    }
+
+    .info-panel {
+        position: relative;
+        width: 95%;
+        height: 50vh;
+        background: rgba(0,0,0,0.25);
+        margin-top: 15px;
+        border-radius: 13px;
+        outline: none;
+        border: none;
+    }
+    .activity-confirm {
+        margin-top: 100px;
+    }
+
+    .location-option {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 14px;
+    }
+    .location-identifier {
+        width: 85%;
+    }
+    .location-address {
+        font-size: 11px;
+        opacity: 0.3;
+    }
+    .location-review {
+        margin-left: 15%;
     }
 }
