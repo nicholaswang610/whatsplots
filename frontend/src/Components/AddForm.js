@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import searchIcon from './icons/Search.png';
 import {ReactComponent as Confirm} from './icons/Confirm.svg';
 import '../Styles/Buttons.css';
-import {getLocation} from '../ActionCreators/MapActions';
+import {getLocation, getPicture} from '../ActionCreators/MapActions';
 
 class AddForm extends Component {
     constructor(props) {
@@ -13,8 +13,7 @@ class AddForm extends Component {
             location: "",           
             title: "",             
             description: "",
-            locationFinal: null,
-            picture: null
+            locationFinal: null
         };
     }
     /**
@@ -25,8 +24,7 @@ class AddForm extends Component {
         e.preventDefault();
         this.setState({
             ...this.state,
-            locationFinal: null,
-            picture: null
+            locationFinal: null
         })
         this.props.setLoading();
         this.props.getLocation({location: this.state.location, title: this.state.title, description: this.state.description});
@@ -38,7 +36,8 @@ class AddForm extends Component {
     handleTitleChange = e => {
         this.setState({
             ...this.state,
-            title: e.target.value
+            title: e.target.value,
+            
         });
     }
 
@@ -86,29 +85,19 @@ class AddForm extends Component {
      * Sets the user's final choice
      */
     finalizeLocation = (location) => {
+        console.log(location);
+        this.props.setLoading();
         this.setState({
             ...this.state,
             locationFinal: location  
         })
-    }
-
-    // NEEDS FIXING: Figure out how to load an image from the backend, and save it or it's reference to state so that it doesn't re-render constantly.
-    loadPicture = (location) => {
-        console.log(location.photos);
         if(location.photos) {
-            return(
-                <div className='info-panel'>
-                    <img src={'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1600&photoreference=' + location.photos[0].photo_reference +'&key=' + process.env.REACT_APP_API_KEY} alt='Image from Google'></img>
-                </div>
-            );
+            this.props.getPicture(location.photos[0].photo_reference);
         } else {
-            return(
-                <div className='info-panel'>
-                    <p className='location-option'>{location.name}</p>
-                </div>
-            )
+            this.props.noPicture();
         }
     }
+
 
     handleSubmit = e => {
 
@@ -129,9 +118,10 @@ class AddForm extends Component {
                  * 2. locationData: response was returned from the Google API
                  * 3. locationFinal: user chose a final location
                 */}
-                {this.props.isLoading ? (<div className='info-panel'><p className='location-option'>Loading...</p></div>) : (null)}
+                {this.props.isLoading && !this.props.locationError ? (<div className='info-panel'><p className='location-option'>Loading...</p></div>) : (null)}
+                {this.props.locationError ? <div className='info-panel'><p className='location-option'>{this.props.locationError}</p></div> : (null)}
                 {this.props.locationData && !this.state.locationFinal && !this.props.isLoading ? (<div className="info-panel">{this.loadSearch(this.props.locationData)}</div>) : null}
-                {this.state.locationFinal && !this.props.isLoading ? this.loadPicture(this.state.locationFinal):(null)}
+                {this.state.locationFinal && !this.props.isLoading ? (<div className='info-panel' ><img src={`data:image/*;base64,${this.props.locationPicture}`} alt="Image from Google"></img></div>):(null)}
                 <div className="activity-title">
                     <form className="title">
                         <input onChange={this.handleTitleChange} id="title" type="text" placeholder="Title..." ></input>
@@ -155,7 +145,8 @@ const mapStateToProps = state => {
         showForm: state.misc.showForm,
         locationData: state.map.locationObject,
         locationError: state.map.locationError,
-        isLoading: state.map.loading
+        isLoading: state.map.loading,
+        locationPicture: state.map.locationPicture
     })
 }
 
@@ -163,7 +154,9 @@ const mapDispatchToProps = dispatch => {
     return ({
         closeForm: ()=>{dispatch({type: "CLOSE_FORM"})},
         getLocation: (locationObj)=>{dispatch(getLocation(locationObj))},
-        setLoading: ()=>{dispatch({type: "LOADING_START"})}
+        setLoading: ()=>{dispatch({type: "LOADING_START"})},
+        getPicture: (photoReference)=>{dispatch(getPicture(photoReference))},
+        noPicture: ()=>{dispatch({type: "LOC_ERROR", err: "Error: No picture found"})}
     })
 }
 

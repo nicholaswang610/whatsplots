@@ -13,4 +13,12 @@ function getLocation(locationObj) {
     
 }
 
-export {getLocation};
+function getPicture(photoReference) {
+    return(dispatch => {
+        axios.post('/api/picture', {photoReference: photoReference}).then(response=> {
+            return dispatch({type: "LOC_PIC", data: response.data.response});
+        })
+    });
+}
+
+export {getLocation, getPicture};

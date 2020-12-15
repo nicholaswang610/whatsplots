@@ -1,5 +1,5 @@
 @media only screen and (min-width: 320px) {
-    .add-form, .add-form:active, .add-form:focus {
+    .add-form {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -107,6 +107,7 @@
         border-radius: 13px;
         outline: none;
         border: none;
+        overflow: hidden;
     }
     .activity-confirm {
         margin-top: 100px;

@@ -1,5 +1,6 @@
 const initState = {
     locationObject: null,
+    locationPicture: null,
     locationError: null,
     loading: false
 }
@@ -23,6 +24,14 @@ const MapReducer = (state=initState, action) => {
                 locationObject: action.data.data.response,
                 locationError: null,
                 loading: false
+            })
+        case 'LOC_PIC':
+            return({
+                ...state,
+                locationPicture: action.data,
+                locationError: null,
+                loading: false
+                
             })
         case 'LOC_ERROR':
             return({
